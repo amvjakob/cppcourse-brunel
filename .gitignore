@@ -3,3 +3,4 @@ build/*
 
 # do not ignore spikes.gdf file
 !build/spikes.gdf
+!build
