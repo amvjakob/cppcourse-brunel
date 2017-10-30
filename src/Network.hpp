@@ -40,13 +40,13 @@ public:
 	 */
 	static double getBackgroundNoise() {
 		// get random device
-		std::random_device randomDevice;
+		static std::random_device randomDevice;
 		
 		// init random generator
-		std::mt19937 gen(randomDevice());
+		static std::mt19937 gen(randomDevice());
 		
 		// init poisson distribution
-		std::poisson_distribution<> poissonGen(C::V_EXT * C::STEP_DURATION);
+		static std::poisson_distribution<> poissonGen(C::V_EXT * C::STEP_DURATION);
 		
 		// number of spikes during one step
 		int nSpikes = poissonGen(gen);

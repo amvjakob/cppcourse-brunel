@@ -20,7 +20,7 @@ int main(int argc, char** argv) {
 	Current* current = new Current(currentMag, 1000.0, 4000.0);
 	
 	// creat new network simulation
-	Network network = Network(current, 1000);
+	Network network = Network(current, 10000);
 	
 	// run the simulation
 	network.run();
