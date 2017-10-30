@@ -1,0 +1,227 @@
+\hypertarget{classNeuron}{\section{Neuron Class Reference}
+\label{classNeuron}\index{Neuron@{Neuron}}
+}
+
+
+Class representing a neuron.  
+
+
+
+
+{\ttfamily \#include $<$Neuron.\-hpp$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classNeuron_ae2a565d7174feaadc1a1a767a5f48632}{Neuron} (bool type\-Excitatory=true, double tau=C\-::\-T\-A\-U, double capacity=C\-::\-C\-A\-P\-A\-C\-I\-T\-Y)
+\begin{DoxyCompactList}\small\item\em \hyperlink{classNeuron}{Neuron} constructor. \end{DoxyCompactList}\item 
+\hypertarget{classNeuron_a3a5fcd8290aabb7cadb1228e885d3c6c}{virtual \hyperlink{classNeuron_a3a5fcd8290aabb7cadb1228e885d3c6c}{$\sim$\-Neuron} ()=default}\label{classNeuron_a3a5fcd8290aabb7cadb1228e885d3c6c}
+
+\begin{DoxyCompactList}\small\item\em default destructor \end{DoxyCompactList}\item 
+\hypertarget{classNeuron_aa40fbb2b025efb1db420da32e16741c1}{bool \hyperlink{classNeuron_aa40fbb2b025efb1db420da32e16741c1}{is\-Refractory} () const }\label{classNeuron_aa40fbb2b025efb1db420da32e16741c1}
+
+\begin{DoxyCompactList}\small\item\em get whether the neuron is refractory \end{DoxyCompactList}\item 
+\hypertarget{classNeuron_ae2bc004a58621da0d1c51591400ca87d}{double \hyperlink{classNeuron_ae2bc004a58621da0d1c51591400ca87d}{get\-Potential} () const }\label{classNeuron_ae2bc004a58621da0d1c51591400ca87d}
+
+\begin{DoxyCompactList}\small\item\em get the neuron's current membrane potential \end{DoxyCompactList}\item 
+\hypertarget{classNeuron_a0998d7e67725ffc3005d42d95fb45962}{long \hyperlink{classNeuron_a0998d7e67725ffc3005d42d95fb45962}{get\-Clock} () const }\label{classNeuron_a0998d7e67725ffc3005d42d95fb45962}
+
+\begin{DoxyCompactList}\small\item\em get the neuron's clock \end{DoxyCompactList}\item 
+\hypertarget{classNeuron_ab1efa405eb0cd7bac6ca012c961efe5d}{int \hyperlink{classNeuron_ab1efa405eb0cd7bac6ca012c961efe5d}{get\-Nb\-Spikes} () const }\label{classNeuron_ab1efa405eb0cd7bac6ca012c961efe5d}
+
+\begin{DoxyCompactList}\small\item\em get the number of previous spikes \end{DoxyCompactList}\item 
+long \hyperlink{classNeuron_a3e384609e8e1e73202abdd10ec79ef2e}{get\-Spike\-Time} (int index) const 
+\begin{DoxyCompactList}\small\item\em Get the time of a given previous spike. \end{DoxyCompactList}\item 
+std\-::vector$<$ long $>$ \hyperlink{classNeuron_af0e376951d666bfd4c860b25863d28b4}{get\-Spike\-Times} () const 
+\begin{DoxyCompactList}\small\item\em Get all the neuron's past spikes. \end{DoxyCompactList}\item 
+bool \hyperlink{classNeuron_a65f5868f9a2ddc2414a5880f28b76d4c}{is\-Excitatory} () const 
+\begin{DoxyCompactList}\small\item\em Get the neuron type. \end{DoxyCompactList}\item 
+double \hyperlink{classNeuron_a177c8f1881dd4ae47e505d8040e990c8}{get\-Transmission\-Value} () const 
+\begin{DoxyCompactList}\small\item\em Get the potential delivered to all the neuron's targets after a spike. \end{DoxyCompactList}\item 
+void \hyperlink{classNeuron_a359701815e8c72b460d2959a339c4b54}{add\-Connection\-Target} (int idx)
+\begin{DoxyCompactList}\small\item\em Add a connection target. \end{DoxyCompactList}\item 
+const std\-::vector$<$ int $>$ \& \hyperlink{classNeuron_ac2730f0eb7d821f2d49d4ab017f5a6d9}{get\-Connection\-Targets} () const 
+\begin{DoxyCompactList}\small\item\em Get a list of all connection targets. \end{DoxyCompactList}\item 
+void \hyperlink{classNeuron_ad60adf0ea35c12bcad396e05ba822dab}{receive} (double pot, long arrival)
+\begin{DoxyCompactList}\small\item\em Receive an incoming spike. \end{DoxyCompactList}\item 
+bool \hyperlink{classNeuron_a72fcea985a2cd480fc5c4b271390eed1}{update} (int steps, double current)
+\begin{DoxyCompactList}\small\item\em Main update function. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static double \hyperlink{classNeuron_a3b1108c292b1e3e9dd7d9d75a666bb95}{get\-Background\-Noise} ()
+\begin{DoxyCompactList}\small\item\em Generate random background noise. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Class representing a neuron. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classNeuron_ae2a565d7174feaadc1a1a767a5f48632}{\index{Neuron@{Neuron}!Neuron@{Neuron}}
+\index{Neuron@{Neuron}!Neuron@{Neuron}}
+\subsubsection[{Neuron}]{\setlength{\rightskip}{0pt plus 5cm}Neuron\-::\-Neuron (
+\begin{DoxyParamCaption}
+\item[{bool}]{type\-Excitatory = {\ttfamily true}, }
+\item[{double}]{tau = {\ttfamily C\-:\-:TAU}, }
+\item[{double}]{capacity = {\ttfamily C\-:\-:CAPACITY}}
+\end{DoxyParamCaption}
+)}}\label{classNeuron_ae2a565d7174feaadc1a1a767a5f48632}
+
+
+\hyperlink{classNeuron}{Neuron} constructor. 
+
+Init a neuron with a given resistance and capacity. Default values are tau of 20ms and capacity of 1 (unitless), resulting in a resistance of 20 (unitless)
+
+
+\begin{DoxyParams}{Parameters}
+{\em type\-Excitatory} & true if the neuron should be excitatory, false otherwise \\
+\hline
+{\em tau} & the neuron's membrane constant \\
+\hline
+{\em capacity} & the neuron's mebrane's capacity \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classNeuron_a359701815e8c72b460d2959a339c4b54}{\index{Neuron@{Neuron}!add\-Connection\-Target@{add\-Connection\-Target}}
+\index{add\-Connection\-Target@{add\-Connection\-Target}!Neuron@{Neuron}}
+\subsubsection[{add\-Connection\-Target}]{\setlength{\rightskip}{0pt plus 5cm}void Neuron\-::add\-Connection\-Target (
+\begin{DoxyParamCaption}
+\item[{int}]{idx}
+\end{DoxyParamCaption}
+)}}\label{classNeuron_a359701815e8c72b460d2959a339c4b54}
+
+
+Add a connection target. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em idx} & index of the target neuron, relative to the vector of all neurons in the \hyperlink{classNetwork}{Network} \\
+\hline
+\end{DoxyParams}
+\hypertarget{classNeuron_a3b1108c292b1e3e9dd7d9d75a666bb95}{\index{Neuron@{Neuron}!get\-Background\-Noise@{get\-Background\-Noise}}
+\index{get\-Background\-Noise@{get\-Background\-Noise}!Neuron@{Neuron}}
+\subsubsection[{get\-Background\-Noise}]{\setlength{\rightskip}{0pt plus 5cm}static double Neuron\-::get\-Background\-Noise (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}}\label{classNeuron_a3b1108c292b1e3e9dd7d9d75a666bb95}
+
+
+Generate random background noise. 
+
+Uses the mt19937 generator, follows a poisson distribution \hypertarget{classNeuron_ac2730f0eb7d821f2d49d4ab017f5a6d9}{\index{Neuron@{Neuron}!get\-Connection\-Targets@{get\-Connection\-Targets}}
+\index{get\-Connection\-Targets@{get\-Connection\-Targets}!Neuron@{Neuron}}
+\subsubsection[{get\-Connection\-Targets}]{\setlength{\rightskip}{0pt plus 5cm}const std\-::vector$<$ int $>$ \& Neuron\-::get\-Connection\-Targets (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{classNeuron_ac2730f0eb7d821f2d49d4ab017f5a6d9}
+
+
+Get a list of all connection targets. 
+
+\begin{DoxyReturn}{Returns}
+A constant reference on the targets, seeing as the vector contains 1250 elements 
+\end{DoxyReturn}
+\hypertarget{classNeuron_a3e384609e8e1e73202abdd10ec79ef2e}{\index{Neuron@{Neuron}!get\-Spike\-Time@{get\-Spike\-Time}}
+\index{get\-Spike\-Time@{get\-Spike\-Time}!Neuron@{Neuron}}
+\subsubsection[{get\-Spike\-Time}]{\setlength{\rightskip}{0pt plus 5cm}long Neuron\-::get\-Spike\-Time (
+\begin{DoxyParamCaption}
+\item[{int}]{index}
+\end{DoxyParamCaption}
+) const}}\label{classNeuron_a3e384609e8e1e73202abdd10ec79ef2e}
+
+
+Get the time of a given previous spike. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em index} & the index of the spike in the spikes vector\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The time the spike happened if $<$index$>$ is valid, or -\/2 $\ast$ C\-::\-R\-E\-F\-R\-A\-C\-T\-O\-R\-Y\-\_\-\-P\-E\-R\-I\-O\-D otherwise 
+\end{DoxyReturn}
+\hypertarget{classNeuron_af0e376951d666bfd4c860b25863d28b4}{\index{Neuron@{Neuron}!get\-Spike\-Times@{get\-Spike\-Times}}
+\index{get\-Spike\-Times@{get\-Spike\-Times}!Neuron@{Neuron}}
+\subsubsection[{get\-Spike\-Times}]{\setlength{\rightskip}{0pt plus 5cm}std\-::vector$<$ long $>$ Neuron\-::get\-Spike\-Times (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{classNeuron_af0e376951d666bfd4c860b25863d28b4}
+
+
+Get all the neuron's past spikes. 
+
+\begin{DoxyReturn}{Returns}
+A std\-::vector containing the time points of the previous spikes 
+\end{DoxyReturn}
+\hypertarget{classNeuron_a177c8f1881dd4ae47e505d8040e990c8}{\index{Neuron@{Neuron}!get\-Transmission\-Value@{get\-Transmission\-Value}}
+\index{get\-Transmission\-Value@{get\-Transmission\-Value}!Neuron@{Neuron}}
+\subsubsection[{get\-Transmission\-Value}]{\setlength{\rightskip}{0pt plus 5cm}double Neuron\-::get\-Transmission\-Value (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{classNeuron_a177c8f1881dd4ae47e505d8040e990c8}
+
+
+Get the potential delivered to all the neuron's targets after a spike. 
+
+\begin{DoxyReturn}{Returns}
+C\-::\-J\-\_\-\-E\-X\-C\-I\-T\-A\-T\-O\-R\-Y if the neuron is excitatory, C\-::\-J\-\_\-\-I\-N\-H\-I\-B\-I\-T\-O\-R\-Y if it is inhibitory 
+\end{DoxyReturn}
+\hypertarget{classNeuron_a65f5868f9a2ddc2414a5880f28b76d4c}{\index{Neuron@{Neuron}!is\-Excitatory@{is\-Excitatory}}
+\index{is\-Excitatory@{is\-Excitatory}!Neuron@{Neuron}}
+\subsubsection[{is\-Excitatory}]{\setlength{\rightskip}{0pt plus 5cm}bool Neuron\-::is\-Excitatory (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{classNeuron_a65f5868f9a2ddc2414a5880f28b76d4c}
+
+
+Get the neuron type. 
+
+\begin{DoxyReturn}{Returns}
+true if the neuron is excitatory, false if it is inhibitory 
+\end{DoxyReturn}
+\hypertarget{classNeuron_ad60adf0ea35c12bcad396e05ba822dab}{\index{Neuron@{Neuron}!receive@{receive}}
+\index{receive@{receive}!Neuron@{Neuron}}
+\subsubsection[{receive}]{\setlength{\rightskip}{0pt plus 5cm}void Neuron\-::receive (
+\begin{DoxyParamCaption}
+\item[{double}]{pot, }
+\item[{long}]{arrival}
+\end{DoxyParamCaption}
+)}}\label{classNeuron_ad60adf0ea35c12bcad396e05ba822dab}
+
+
+Receive an incoming spike. 
+
+Adds a transmission potential to the circular buffer
+
+
+\begin{DoxyParams}{Parameters}
+{\em pot} & the potential transmitted post-\/synaptically from the spiking neuron \\
+\hline
+{\em arrival} & the time of arrival of the spike, seen from the simulation clock \\
+\hline
+\end{DoxyParams}
+\hypertarget{classNeuron_a72fcea985a2cd480fc5c4b271390eed1}{\index{Neuron@{Neuron}!update@{update}}
+\index{update@{update}!Neuron@{Neuron}}
+\subsubsection[{update}]{\setlength{\rightskip}{0pt plus 5cm}bool Neuron\-::update (
+\begin{DoxyParamCaption}
+\item[{int}]{steps, }
+\item[{double}]{current}
+\end{DoxyParamCaption}
+)}}\label{classNeuron_a72fcea985a2cd480fc5c4b271390eed1}
+
+
+Main update function. 
+
+Handles firing, membrane potential reset after spike, clock incrementation 
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+Neuron.\-hpp\item 
+Neuron.\-cpp\end{DoxyCompactItemize}
