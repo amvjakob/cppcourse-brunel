@@ -73,7 +73,7 @@ void Network::save() const {
 	std::cout << "Saving..." << std::endl;
 	
 	std::ofstream log;
-	log.open("spikes.gdf");
+	log.open("../spikes.gdf");
 	
 	for (int i = 0; i < (int) neurons.size(); ++i) {
 		for (long spikeTime : neurons.at(i)->getSpikeTimes()) {
