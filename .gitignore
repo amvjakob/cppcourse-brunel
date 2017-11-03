@@ -2,5 +2,6 @@
 build/*
 
 # do not ignore spikes.gdf file
+# does not work if there is a version-controlled subfolder (!)
 !build/spikes.gdf
 !build
