@@ -19,12 +19,12 @@ public:
 	 *
 	 * Initializes a new network
 	 * 
-	 * \param current		 	a current object (I)
+	 * \param current		 	a Current object (I)
 	 * \param duration			length of the simulation in number of time steps
 	 */
 	Network(Current* current, long duration = 10000);
 	
-	/// Netowrk destructor: safely removes dynamically allocated neuron objects
+	/// Network destructor: safely removes dynamically allocated neuron objects
 	virtual ~Network();
 	
 	/*! \brief Run the simulation
@@ -37,8 +37,9 @@ public:
 	/*! \brief Export results to file
 	 *
 	 * Stores the results of the simulation (all spikes and when they happened)
-	 * in a file called 'spikes.gdf' with the following format (\t between values):
-	 * [step at which a spike happened]	[index of the spiking neuron]
+	 * in a file with the following format:
+	 * 
+	 * [step at which a spike happened][tab][index of the spiking Neuron]
 	 */
 	void save() const;
 	
@@ -64,14 +65,14 @@ public:
 		return nSpikes * C::J_EXCITATORY;
 	}
 	
-private:
+protected:
 
-	/*! \brief Creates random connections and assigns them to the neurons
+	/*! \brief Creates random connections and assigns them to the Neurons
 	 *
 	 *  Fills a fixed-size table with uniformly distributed values 
-	 *  between <min> and <max>.
-	 * 	The generated numbers represent the indices of the sources of the neuron at index <idx>.
-	 *  Assigns the neuron at index <idx> as target of the generated sources
+	 *  between \p min and \p max.
+	 * 	The generated numbers represent the indices of the sources of the neuron at index \p idx.
+	 *  Assigns the neuron at index \p idx as target of the generated sources.
 	 * 
 	 * \param table		 	array of any size, determines the amount of numbers generated
 	 * \param idx			index of target neurons

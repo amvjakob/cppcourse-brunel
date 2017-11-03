@@ -2,6 +2,8 @@
 #include <fstream>
 #include <cassert>
 #include <ctime>
+#include <sstream> 
+#include <string>
 #include "Network.hpp"
 
 Network::Network(Current* c, long duration)
@@ -37,7 +39,7 @@ Network::Network(Current* c, long duration)
 	
 	
 	time_t t2 = time(0);
-	std::cout << " [done in " << t2 - t1 << "s]" << std::endl;
+	std::cout << '\t' << "[done in " << t2 - t1 << "s]" << std::endl;
 }
 
 
@@ -79,16 +81,25 @@ void Network::run() {
 	// get end of the simulation
 	time_t t2 = time(0);
 
-	std::cout << "[done in " << t2 - t1 << " s, " << tEnd << " steps]" << std::endl;
+	std::cout << '\t' << '\t' << "[done in " << t2 - t1 << " s, " << tEnd << " steps]" << std::endl;
 }
 
 
 void Network::save() const {
-	std::cout << "Saving..." << std::endl;
+	std::cout << "Saving..." << std::flush;
 	
 	// open result file
 	std::ofstream log;
-	log.open("spikes.gdf");
+	
+	// create filename
+	std::stringstream ss;
+	ss << "../results/spikes" << 
+		"_eta" << C::ETA <<
+		"_g" << C::G <<
+		".gdf";
+	std::string filename = ss.str(); 
+	
+	log.open(filename);
 	
 	// write each spike to the file
 	for (int i = 0; i < (int) neurons.size(); ++i) {
@@ -97,5 +108,6 @@ void Network::save() const {
 		}
 	}
 	
+	std::cout << '\t' << '\t' << "[saved to file '" << filename << "']" << std::endl;
 	log.close();
 }

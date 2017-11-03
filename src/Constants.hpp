@@ -39,7 +39,7 @@ namespace C {
 	constexpr auto DEFAULT_CURRENT_MAG = 1.0;
 	
 	
-	constexpr auto G = 3;									//!< Ratio of inhibitory vs excitatory transmission values
+	constexpr auto G = 5;									//!< Ratio of inhibitory vs excitatory transmission values
 	constexpr auto J_EXCITATORY = 0.1; 						//!< Post-synaptic excitement after spike
 	constexpr auto J_INHIBITORY = -G * J_EXCITATORY;		//!< Post-synaptic inhibition after spike
 	

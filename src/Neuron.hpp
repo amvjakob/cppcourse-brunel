@@ -9,7 +9,7 @@
 class Network;
 
 
-/// Class representing a neuron
+/// Class representing a Neuron
 class Neuron {
 	
 public:
@@ -29,13 +29,13 @@ public:
 	virtual ~Neuron() = default;
 	
 	
-	/// get the neuron's current membrane potential
+	/// Get the neuron's current membrane potential
 	double getPotential() const;
 	
-	/// get the neuron's internal clock
+	/// Get the neuron's internal clock
 	long getClock() const;
 	
-	/// get the number of previous spikes
+	/// Get the number of previous spikes
 	int getNbSpikes() const;
 	
 
@@ -43,7 +43,7 @@ public:
 	 * 
 	 * \param index		the index of the spike in the spikes vector
 	 * 
-	 * \return The time the spike happened if <index> is valid, 
+	 * \return The time the spike happened if \p index is valid, 
 	 * 		   or -2 * C::REFRACTORY_PERIOD otherwise
 	 */ 
 	long getSpikeTime(int index) const;
@@ -103,11 +103,12 @@ public:
 	
 	/*! \brief Main update function
 	 *
-	 *  Handles firing, membrane potential reset after spike, clock incrementation
+	 *  Handles firing, potential updating, resetting of incoming buffer, 
+	 *  clock incrementation
 	 */
 	bool update(int steps, double current);
 	
-private:
+protected:
 
 	/*! \brief Updates the neuron's membrane potential
 	 *

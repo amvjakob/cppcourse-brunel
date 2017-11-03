@@ -1,11 +1,11 @@
 #ifndef CURRENT_H
 #define CURRENT_H
 
-/** \brief Class representing a current (I)
+/** \brief Class representing a Current (I)
  * 
  * Could be useful for later if one does not simply want to use
  * a constant current between two time points.
- * In hindsight however, this class is superfluous
+ * In hindsight however, this class is superfluous.
  * */
 class Current {
 	
