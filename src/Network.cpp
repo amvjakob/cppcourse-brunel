@@ -8,7 +8,8 @@ Network::Network(Current* c, long duration)
 	: current(c),
 	  t(0), tEnd(std::abs(duration))
 {
-	std::cout << "Generating network..." << std::endl;
+	std::cout << "Generating network..." << std::flush;
+	time_t t1 = time(0);
 	
 	// init neuron array
 	neurons = { nullptr };
@@ -33,6 +34,10 @@ Network::Network(Current* c, long duration)
 		// create and assign inhibitory connections
 		createConnections(inhibitoryTable, i, C::N_EXCITATORY, C::N_TOTAL - 1);
 	}
+	
+	
+	time_t t2 = time(0);
+	std::cout << " [done in " << t2 - t1 << "s]" << std::endl;
 }
 
 
@@ -45,7 +50,7 @@ Network::~Network() {
 }
 
 void Network::run() {
-	std::cout << "Running..." << std::endl;
+	std::cout << "Running..." << std::flush;
 
 	// get beginning of the simulation
 	time_t t1 = time(0);
@@ -54,10 +59,10 @@ void Network::run() {
 	while (t < tEnd) {	
 			
 		// update the network
-		for (Neuron* neuron : neurons) {
+		for (auto neuron : neurons) {
 			
 			// update the neuron, 1 step, no external current
-			bool spiked = neuron->update(1, 0.0);
+			bool spiked = neuron->update(1, current->getValue(t));
 			
 			if (spiked) {				
 				// transmit spike to targets with delay
@@ -74,7 +79,7 @@ void Network::run() {
 	// get end of the simulation
 	time_t t2 = time(0);
 
-	std::cout << "Simulated " << tEnd << " steps in " << t2 - t1 << " ms" << std::endl;
+	std::cout << "[done in " << t2 - t1 << " s, " << tEnd << " steps]" << std::endl;
 }
 
 

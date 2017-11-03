@@ -54,8 +54,8 @@ public:
 		// init random generator
 		static std::mt19937 gen(randomDevice());
 		
-		// init poisson distribution - we multiply by 1000 because C::STEP_DURATION is in [s]
-		static std::poisson_distribution<> poissonGen(C::V_EXT * C::STEP_DURATION * 1000);
+		// init poisson distribution
+		static std::poisson_distribution<> poissonGen(C::V_EXT * C::STEP_DURATION);
 		
 		// number of spikes during one step
 		int nSpikes = poissonGen(gen);
