@@ -1,19 +1,20 @@
 #include <iostream>
 #include <fstream>
 #include <cassert>
+#include <chrono>
 #include "Network.hpp"
 
 Network::Network(Current* c, long duration)
 	: current(c),
 	  t(0), tEnd(std::abs(duration))
 {
-	std::cout << "Populating arrays..." << std::endl;
+	std::cout << "Generating network..." << std::endl;
 	
 	// init neuron array
 	neurons = { nullptr };
 
 	// generate neurons
-	for (int i = 0; i < C::N_TOTAL; ++i) {
+	for (int i = 0; i < (int) C::N_TOTAL; ++i) {
 		// neurons from index 0 to C::N_EXCITATORY are exictatory,
 		// the rest are inhibitory
 		bool isExcitatory = i < C::N_EXCITATORY;
@@ -21,6 +22,7 @@ Network::Network(Current* c, long duration)
 	}
 	
 	// generate random connections
+
 	std::array<int, (std::size_t) (C::C_EXCITATORY)> excitatoryTable = { 0 };
 	std::array<int, (std::size_t) (C::C_INHIBITORY)> inhibitoryTable = { 0 };
 	
@@ -44,7 +46,9 @@ Network::~Network() {
 
 void Network::run() {
 	std::cout << "Running..." << std::endl;
-	
+
+	// get beginning of the simulation
+	std::chrono::high_resolution_clock::time_point t1 = std::chrono::high_resolution_clock::now();
 	
 	// main simulation loop
 	while (t < tEnd) {	
@@ -66,17 +70,24 @@ void Network::run() {
 		// increment time
 		++t;
 	}
+
+	// get end of the simulation
+	std::chrono::high_resolution_clock::time_point t2 = std::chrono::high_resolution_clock::now();
+
+	std::cout << "Simulated " << tEnd << " steps in " << t2 - t1 << " ms" << std::endl;
 }
 
 
 void Network::save() const {
 	std::cout << "Saving..." << std::endl;
 	
+	// open result file
 	std::ofstream log;
-	log.open("../spikes.gdf");
+	log.open("spikes.gdf");
 	
+	// write each spike to the file
 	for (int i = 0; i < (int) neurons.size(); ++i) {
-		for (long spikeTime : neurons.at(i)->getSpikeTimes()) {
+		for (auto spikeTime : neurons.at(i)->getSpikeTimes()) {
 			log << spikeTime << '\t' << i << '\n';
 		}
 	}

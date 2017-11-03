@@ -3,11 +3,9 @@
 
 #include <vector>
 #include <array>
-#include <random>
-#include <algorithm>
 #include "Constants.hpp"
 
-
+// Circular dependency resolution
 class Network;
 
 
@@ -17,26 +15,24 @@ class Neuron {
 public:
 	/*! \brief Neuron constructor
 	 *
-	 *  Init a neuron with a given resistance and capacity.
-	 *  Default values are tau of 20ms
-	 *  and capacity of 1 (unitless), resulting in a resistance of 20 (unitless)
+	 *  Initialize a neuron of a specific type, with specific values for tau, R
+	 *  Default values are tau of 20 and resistance of 20, 
+	 *  resulting in a resistance of 1
 	 * 
 	 * \param typeExcitatory 	true if the neuron should be excitatory, false otherwise
 	 * \param tau				the neuron's membrane constant
-	 * \param resistance		the neuron's mebrane's resistance
+	 * \param resistance		the neuron's membrane's resistance
 	 */
 	Neuron(bool typeExcitatory = true, double tau = C::TAU, double resistance = C::MEMBRANE_RESISTANCE);
 	
-	/// default destructor
+	/// Default destructor
 	virtual ~Neuron() = default;
 	
-	/// get whether the neuron is refractory
-	bool isRefractory() const;
 	
 	/// get the neuron's current membrane potential
 	double getPotential() const;
 	
-	/// get the neuron's clock
+	/// get the neuron's internal clock
 	long getClock() const;
 	
 	/// get the number of previous spikes
@@ -58,7 +54,14 @@ public:
 	 * \return A std::vector containing the time points of the previous spikes
 	 */ 
 	std::vector<long> getSpikeTimes() const;
-	
+
+
+	/*! \brief Get whether the neuron is refractory
+	 *
+	 *  The neuron is refractory for C::REFRACTORY_TIME time steps after
+	 *  its last spike
+	 */
+	bool isRefractory() const;
 	
 	/*! \brief Get the neuron type
 	 *
@@ -83,7 +86,7 @@ public:
 	
 	/*! \brief Get a list of all connection targets
 	 *
-	 *  \return A constant reference on the targets, seeing as the vector contains 1250 elements
+	 *  \return A constant reference on the targets, seeing as the vector contains around 1250 elements
 	 */
 	const std::vector<int>& getConnectionTargets() const;
 	
@@ -126,18 +129,19 @@ private:
 
 	double potential;				//!< the neuron's membrane potential, initialised to 0.0
 	
-	std::vector<long> spikes; 		//!< a vector containing all the neuron's previous spikes
-	
 	long clock;						//!< neuron's internal clock, initialised to 0
+
+	bool typeExcitatory; 			//!< circular incoming buffer
+
+	std::vector<long> spikes; 		//!< a vector containing all the neuron's previous spikes
 	
 	double c1, c2;					//!< integration constants
 	
 	/// circular incoming buffer
 	std::array<double, C::TRANSMISSION_BUFFER_SIZE> incomingBuffer;
 	
-	bool typeExcitatory; 			//!< circular incoming buffer
-	
-	std::vector<int> connections; 	//!< connections
+	/// target connections - index of target neuron in the Network's list of Neurons
+	std::vector<int> connections; 	
 };
 
 #endif

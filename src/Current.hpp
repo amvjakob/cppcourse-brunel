@@ -4,14 +4,15 @@
 /** \brief Class representing a current (I)
  * 
  * Could be useful for later if one does not simply want to use
- * a constant current between two time points
+ * a constant current between two time points.
+ * In hindsight however, this class is superfluous
  * */
 class Current {
 	
 public:
 	/*! \brief Current constructor 
 	 *
-	 *  Init a new current
+	 * Initialize a new current
 	 * 
 	 * \param current		 	the current magnitude, defaulted to 1.0
 	 * \param currentStart		the time the current starts, defaulted to 0

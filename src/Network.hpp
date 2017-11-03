@@ -17,20 +17,29 @@ class Network {
 public:
 	/*! \brief Network constructor 
 	 *
-	 *  Init a new network
+	 * Initializes a new network
 	 * 
-	 * \param current		 	a current object
-	 * \param duration			duration of the simulation in time steps
+	 * \param current		 	a current object (I)
+	 * \param duration			length of the simulation in number of time steps
 	 */
 	Network(Current* current, long duration = 10000);
 	
 	/// Netowrk destructor: safely removes dynamically allocated neuron objects
 	virtual ~Network();
 	
-	/// Main function: run the simulation
+	/*! \brief Run the simulation
+	 *
+	 * Updates each neuron with the given current for 
+	 * the specified number of time steps
+	 */
 	void run();
 	
-	/// Export results to file
+	/*! \brief Export results to file
+	 *
+	 * Stores the results of the simulation (all spikes and when they happened)
+	 * in a file called 'spikes.gdf' with the following format (\t between values):
+	 * [step at which a spike happened]	[index of the spiking neuron]
+	 */
 	void save() const;
 	
 	
@@ -45,8 +54,8 @@ public:
 		// init random generator
 		static std::mt19937 gen(randomDevice());
 		
-		// init poisson distribution
-		static std::poisson_distribution<> poissonGen(C::V_EXT * C::STEP_DURATION);
+		// init poisson distribution - we multiply by 1000 because C::STEP_DURATION is in [s]
+		static std::poisson_distribution<> poissonGen(C::V_EXT * C::STEP_DURATION * 1000);
 		
 		// number of spikes during one step
 		int nSpikes = poissonGen(gen);
@@ -60,8 +69,9 @@ private:
 	/*! \brief Creates random connections and assigns them to the neurons
 	 *
 	 *  Fills a fixed-size table with uniformly distributed values 
-	 *  between min and max, without hitting the idx value.
-	 *  Assigns the values as neuron targets 
+	 *  between <min> and <max>.
+	 * 	The generated numbers represent the indices of the sources of the neuron at index <idx>.
+	 *  Assigns the neuron at index <idx> as target of the generated sources
 	 * 
 	 * \param table		 	array of any size, determines the amount of numbers generated
 	 * \param idx			index of target neurons
@@ -71,37 +81,35 @@ private:
 	template<std::size_t SIZE>
 	void createConnections(std::array<int, SIZE>& table, int idx, int min, int max) {
 		// init random engine and distribution
-		std::default_random_engine engine;
+		static std::default_random_engine engine;
 		std::uniform_int_distribution<int> distr(min, max);
 
 		// fill table with generated values
 		std::generate(
 			table.begin(),
 			table.end(), 
-			[&]() { 
-				// the table can be filled with multiple identical indexes,
-				// but not with the index of the receiving neuron itself (no self-transmissions)
-				int val = -1;
-				do {
-					val = distr(engine);
-				} while (val == idx);
-				
-				return val; 
+			[&]() { 				
+				return distr(engine); 
 			}
 		);
 		
 		// assign to connection vector
-		for (int i = 0; i < (int) table.size(); ++i) {
-			neurons[table[i]]->addConnectionTarget(idx);
+		for (int source : table) {
+			neurons[source]->addConnectionTarget(idx);
 		}
 	}
 
 private:
-	std::array<Neuron*, C::N_TOTAL> neurons; 	//!< all neurons in the network
-	
+
 	Current* current; 							//!< the simulation's current (I)
 
 	long t, tEnd;								//!< current time, ending time
+
+	/** all neurons in the network, where the first C::N_EXCITATORY neurons are excitatory,
+	 *  and the rest are inhibitory
+	 * */
+	std::array<Neuron*, C::N_TOTAL> neurons; 
+
 };
 
 #endif

@@ -2,25 +2,29 @@
 #include "Current.hpp"
 #include "Constants.hpp"
 
-// Note: we work with number of steps as "time unit"
+// note: we work with number of steps as "time unit"
 int main(int argc, char** argv) {
 	
-	// use constant value as default value
+	/*
 	double currentMag = C::DEFAULT_CURRENT_MAG;
 	
-	// launch with command line argument if present
-	if (argc > 1) {
+	if (argc > 1) { // launch with command line argument if present
 		currentMag = atof(argv[1]);
 	}
+	*/
 	
-	// for now, no outside current
-	currentMag = 0.0;
+	// create current (I) object - no external current
+	Current* current = new Current(
+		0.0, 	// magnitude
+		0,		// start
+		0		// stop
+	);
 	
-	// create new curent pointer
-	Current* current = new Current(currentMag, 1000.0, 4000.0);
-	
-	// creat new network simulation
-	Network network = Network(current, 10000);
+	// generate new network
+	Network network = Network(
+		current, 
+		10000	// length of the simulation in time steps
+	);
 	
 	// run the simulation
 	network.run();

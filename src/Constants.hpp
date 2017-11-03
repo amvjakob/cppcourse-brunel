@@ -5,7 +5,7 @@
 
 namespace C {
 	
-	/// Duration in ms of one simulation step (0.1ms)
+	/// Duration in s of one simulation step (0.1ms)
 	constexpr auto STEP_DURATION = 0.1E-3;
 	
 	/// Tau of neuron membrane (20ms)
@@ -33,27 +33,23 @@ namespace C {
 	
 	/// Ring buffer size for spike transmission storage
 	constexpr int TRANSMISSION_BUFFER_SIZE = TRANSMISSION_DELAY + 1;
-	
-	/** Name of the log file for the single neuron's membrane potential
-	 *  note: the type of the constant will be char[]
-	 * */
-	constexpr auto FILENAME_POT_LOG = "potential.log.txt";
+
 	
 	/// Default current, should not create spikes
 	constexpr auto DEFAULT_CURRENT_MAG = 1.0;
 	
 	
-	constexpr auto G = 5;								//!< Ratio of inhibitory vs excitatory transmission values
-	constexpr auto J_EXCITATORY = 0.1; 					//!< Post-synaptic excitement after spike
-	constexpr auto J_INHIBITORY = -G * J_EXCITATORY;	//!< Post-synaptic inhibition after spike
+	constexpr auto G = 5;									//!< Ratio of inhibitory vs excitatory transmission values
+	constexpr auto J_EXCITATORY = 0.1; 						//!< Post-synaptic excitement after spike
+	constexpr auto J_INHIBITORY = -G * J_EXCITATORY;		//!< Post-synaptic inhibition after spike
 	
 	
-	constexpr double N_RATIO = 0.25;					//!< Ratio of inhibitory vs excitatory neurons
-	constexpr int N_EXCITATORY = 10000;					//!< Number of excitatory neurons
-	constexpr int N_INHIBITORY = N_RATIO * N_EXCITATORY;//!< Number of inhibitory neurons
-	constexpr int N_EXT = N_EXCITATORY;					//!< Number of external neurons
+	constexpr double N_RATIO = 0.25;						//!< Ratio of inhibitory vs excitatory neurons
+	constexpr int N_EXCITATORY = 10000;						//!< Number of excitatory neurons
+	constexpr int N_INHIBITORY = N_RATIO * N_EXCITATORY;	//!< Number of inhibitory neurons
+	constexpr int N_EXT = N_EXCITATORY;						//!< Number of external neurons
 	
-	constexpr int N_TOTAL = N_EXCITATORY + N_INHIBITORY;//!< Total number of neurons in simulation
+	constexpr int N_TOTAL = N_EXCITATORY + N_INHIBITORY;	//!< Total number of neurons in simulation
 	
 	
 	/// Connectivity value
@@ -66,10 +62,13 @@ namespace C {
 	/// Number of total incoming connections for any neuron
 	constexpr int C_TOTAL = C_EXCITATORY + C_INHIBITORY;
 	
-	/// Value of external "random" background nois potential
+	/// Multiplier for the average frequency of external random spikes
 	constexpr double ETA = 2.0;
+
+	/// Average frequency of external random spikes
 	constexpr double V_EXT = ETA * V_THRESHOLD / (J_EXCITATORY * TAU);
 	
+
 	/* // unused
 	
 	/// Transform current time to steps

@@ -3,7 +3,7 @@ import pylab as pl
 
 raw_data = np.genfromtxt('spikes.gdf')
 
-n_neurons = 100
+n_neurons = 50
 
 select = np.array([d for d in raw_data if d[1] < n_neurons])
 data = select.transpose()

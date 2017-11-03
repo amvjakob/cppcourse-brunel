@@ -17,7 +17,6 @@ TEST(Current, CorrectOnOffTest) {
     EXPECT_EQ(c.getValue(201), 0.0);
 }
 
-// NOTE: the following 4 tests need no external input 
 TEST(NeuronTest, PositiveInput) {
 	if (NO_EXTERNAL_INPUT) {
 		Neuron n(true, C::TAU, C::MEMBRANE_RESISTANCE);
@@ -61,7 +60,7 @@ TEST(NeuronTest, CorrectSpikes) {
 		
 		double I_ext = 1.01;
 		
-		// for an I_ext of 1.01, the spike times should be 
+		// for an I_ext of 1.01, the spike times should be at
 		// t=92.4ms, t=186.8ms and at t=281.2ms
 		for (int spikeTime : { 924, 1868, 2812 }) {
 			// update neuron to the step before the spike
@@ -75,13 +74,33 @@ TEST(NeuronTest, CorrectSpikes) {
 		
 	}
 }
+
+TEST(NeuronTest, CorrectSpikeReception) {
+	if (NO_EXTERNAL_INPUT) {
+		Neuron n();
+
+		// transmit a spike at start
+		n.receive(C::J_EXCITATORY, C::TRANSMISSION_DELAY);
+
+		// update the neuron so it's just over the delay
+		n.update(C::TRANSMISSION_DELAY, 0);
+
+		// the neuron's membrane potential should be equal
+		// to the transmitted potential
+		EXPECT_EQ(n.getPotential(), C::J_EXCITATORY);
+	}
+}
  
 TEST(NeuronTest, NoSpikesTest) { 
 	Neuron n = Neuron();
 	
 	// neuron should not be refractory just after instanciation
     ASSERT_FALSE(n.isRefractory());
+
+    // neuron should start without any emitted spikes
+    ASSERT_TRUE(n.getNbSpikes() == 0);
 }
+
 
 int main(int argc, char**argv) {
 	::testing::InitGoogleTest(&argc, argv);

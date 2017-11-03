@@ -16,22 +16,13 @@ Neuron::Neuron(bool type, double t, double r)
 	c1 = exp(- C::STEP_DURATION / tau);
 	c2 = resistance * (1.0 - c1);
 	
-	// zero-initalised
+	// incoming potential buffer, zero-initalised
 	incomingBuffer = { };
 	
 	// connections, empty
 	connections = { };
 }
 
-// check if neuron is still in refractory mode
-bool Neuron::isRefractory() const {	
-	// get last spike
-	int lastIndex = getNbSpikes() - 1;
-	
-	// the neuron is refractory is there was a spike in the last
-	// amount of steps equal to one refractory period
-	return lastIndex >= 0 && clock - getSpikeTime(lastIndex) < C::REFRACTORY_TIME;
-}
 
 // get the current membrane potential
 double Neuron::getPotential() const {
@@ -62,6 +53,14 @@ long Neuron::getSpikeTime(int index) const {
 std::vector<long> Neuron::getSpikeTimes() const {
 	return spikes;
 }
+
+// check if neuron is still in refractory mode
+bool Neuron::isRefractory() const {	
+	// the neuron is refractory if there was a spike in the last
+	// C::REFRACTORY_TIME amount of steps 
+	return !spikes.empty() && clock - spikes.back() < C::REFRACTORY_TIME;
+}
+
 
 // get if the neuron is refractory
 bool Neuron::isExcitatory() const {
@@ -100,10 +99,7 @@ bool Neuron::update(int steps, double current) {
 			spiked = true;
 		}
 		
-		if (isRefractory()) {
-			// reset the membrane potential if there was a spike
-			potential = C::V_REST;
-		} else {
+		if (!isRefractory()) {
 			// update the potential
 			updatePotential(current);
 		}
@@ -119,9 +115,9 @@ bool Neuron::update(int steps, double current) {
 	return spiked;
 }
 
-// update neuron according to general formula
+// update the neuron's potential
 void Neuron::updatePotential(double current) {
-	// update the potential
+	// update the potential according to the general formula
 	potential = c1 * potential + c2 * current;
 	
 	// incoming spikes
@@ -135,5 +131,8 @@ void Neuron::updatePotential(double current) {
 void Neuron::fire() {
 	// add new spike to the list 
 	spikes.push_back(clock);
+
+	// reset the membrane potential
+	potential = C::V_REST;
 }
 
