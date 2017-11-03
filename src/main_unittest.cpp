@@ -77,7 +77,7 @@ TEST(NeuronTest, CorrectSpikes) {
 
 TEST(NeuronTest, CorrectSpikeReception) {
 	if (NO_EXTERNAL_INPUT) {
-		Neuron n();
+		Neuron n = Neuron();
 
 		// transmit a spike at start
 		n.receive(C::J_EXCITATORY, C::TRANSMISSION_DELAY);

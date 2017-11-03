@@ -1,7 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <cassert>
-#include <chrono>
+#include <ctime>
 #include "Network.hpp"
 
 Network::Network(Current* c, long duration)
@@ -48,7 +48,7 @@ void Network::run() {
 	std::cout << "Running..." << std::endl;
 
 	// get beginning of the simulation
-	std::chrono::high_resolution_clock::time_point t1 = std::chrono::high_resolution_clock::now();
+	time_t t1 = time(0);
 	
 	// main simulation loop
 	while (t < tEnd) {	
@@ -72,7 +72,7 @@ void Network::run() {
 	}
 
 	// get end of the simulation
-	std::chrono::high_resolution_clock::time_point t2 = std::chrono::high_resolution_clock::now();
+	time_t t2 = time(0);
 
 	std::cout << "Simulated " << tEnd << " steps in " << t2 - t1 << " ms" << std::endl;
 }

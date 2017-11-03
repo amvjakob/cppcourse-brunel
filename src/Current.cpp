@@ -1,3 +1,4 @@
+#include <cassert> 
 #include "Current.hpp"
 
 Current::Current(double c, long cStart, long cEnd)
