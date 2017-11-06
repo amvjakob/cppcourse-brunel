@@ -63,7 +63,7 @@ namespace C {
 	constexpr int C_TOTAL = C_EXCITATORY + C_INHIBITORY;
 	
 	/// Multiplier for the average frequency of external random spikes
-	constexpr double ETA = 2.0;
+	constexpr double ETA = 2;
 
 	/// Average frequency of external random spikes
 	constexpr double V_EXT = ETA * V_THRESHOLD / (J_EXCITATORY * TAU);
