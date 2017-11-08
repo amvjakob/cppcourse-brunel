@@ -1,6 +1,10 @@
 # ignore build files
 build/*
 
+# ignore Doxyfile (generated from Doxyfile.in with cmake)
+Doxyfile*
+!Doxyfile.in
+
 # do not ignore spikes.gdf file
 # does not work if there is a version-controlled subfolder (!)
 !build/spikes.gdf
