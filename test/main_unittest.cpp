@@ -86,6 +86,44 @@ TEST(NeuronSpikesTest, CorrectSpikeReception) {
 		EXPECT_EQ(n.getPotential(), C::J_EXCITATORY);
 	}
 }
+
+TEST(TwoNeuronsTest, CorrectBehaviour) {
+	Neuron n1 = new Neuron();
+	Neuron n2 = new Neuron();
+	
+	n1->addConnectionTarget(n2);
+	
+	std::vector<Neuron*> neurons = {};
+	neurons.push_back(n1);
+	neurons.push_back(n2);
+	
+	long t = 0;
+	long stop = 10000;
+	while (t < stop) {
+		
+		for (int i = 0; i < (int) neurons.size(); ++i) {
+			Neuron* neuron = neurons[i];
+			
+			bool spiked = neuron->update(1, 0.0);
+			
+			if (spiked) {
+				std::cout << "Spike emitted by neuron " << i << std::endl;
+				
+				
+				for (auto idx : neuron->getConnectionTargets()) {
+					neurons[idx]->receive(neuron->getTransmissionValue(), t + C::TRANSMISSION_DELAY);
+				}
+			}
+		}
+		
+		++t;
+	}
+	
+	delete n1;
+	delete n2;
+	n1 = nullptr;
+	n2 = nullptr;
+}
  
 TEST(NeuronSpikesTest, NoSpikesOnInit) { 
 	Neuron n = Neuron();
