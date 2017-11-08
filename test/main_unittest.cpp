@@ -88,10 +88,10 @@ TEST(NeuronSpikesTest, CorrectSpikeReception) {
 }
 
 TEST(TwoNeuronsTest, CorrectBehaviour) {
-	Neuron n1 = new Neuron();
-	Neuron n2 = new Neuron();
+	Neuron* n1 = new Neuron();
+	Neuron* n2 = new Neuron();
 	
-	n1->addConnectionTarget(n2);
+	n1->addConnectionTarget(1);
 	
 	std::vector<Neuron*> neurons = {};
 	neurons.push_back(n1);
@@ -101,15 +101,11 @@ TEST(TwoNeuronsTest, CorrectBehaviour) {
 	long stop = 10000;
 	while (t < stop) {
 		
-		for (int i = 0; i < (int) neurons.size(); ++i) {
-			Neuron* neuron = neurons[i];
+		for (auto neuron : neurons) {
 			
 			bool spiked = neuron->update(1, 0.0);
 			
-			if (spiked) {
-				std::cout << "Spike emitted by neuron " << i << std::endl;
-				
-				
+			if (spiked) {				
 				for (auto idx : neuron->getConnectionTargets()) {
 					neurons[idx]->receive(neuron->getTransmissionValue(), t + C::TRANSMISSION_DELAY);
 				}
@@ -119,10 +115,12 @@ TEST(TwoNeuronsTest, CorrectBehaviour) {
 		++t;
 	}
 	
-	delete n1;
-	delete n2;
-	n1 = nullptr;
-	n2 = nullptr;
+	for (int i = 0; i < (int) neurons.size(); ++i) {
+		for (int spike = 0; spike < (int) neurons[i]->getSpikeTimes().size(); ++spike) {
+			std::cout << "spike n°" << spike << " du neurone " << i << " at: " << neurons[i]->getSpikeTime(spike) << std::endl;
+		}
+		std::cout << "Total: " << neurons[i]->getSpikeTimes().size() << std::endl << std::endl;
+	}
 }
  
 TEST(NeuronSpikesTest, NoSpikesOnInit) { 
