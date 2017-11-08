@@ -1,9 +1,15 @@
 #ifndef CONSTANTS_H
 #define CONSTANTS_H
 
-#include <cmath>
+
+/*! \file Constants.hpp
+    \brief File containing all constants relevant for the simulation.
+*/
 
 namespace C {
+	
+	/// Flag for tests: true if there is external noise, false otherwise
+	constexpr bool IS_BACKGROUND_NOISE = true;
 	
 	/// Duration in s of one simulation step (0.1ms)
 	constexpr auto STEP_DURATION = 0.1E-3;
@@ -67,20 +73,6 @@ namespace C {
 
 	/// Average frequency of external random spikes
 	constexpr double V_EXT = ETA * V_THRESHOLD / (J_EXCITATORY * TAU);
-	
-
-	/* // unused
-	
-	/// Transform current time to steps
-	static long timeToSteps(long t) {
-		return static_cast<unsigned long>(std::ceil(t / STEP_DURATION));
-	}
-	
-	/// Transform steps to time
-	static long stepsToTime(long steps) {
-		return steps * STEP_DURATION;
-	}
-	* */
 }
 
 #endif

@@ -6,9 +6,7 @@
 #include <iostream>
 #include "googletest/include/gtest/gtest.h"
 
-constexpr bool NO_EXTERNAL_INPUT = false;
-
-TEST(Current, CorrectOnOffTest) { 
+TEST(CurrentTest, CorrectOnOffTest) { 
 	// test correct values of current
 	Current c(1.0, 100, 200);
     EXPECT_EQ(c.getValue(99), 0.0);
@@ -17,8 +15,8 @@ TEST(Current, CorrectOnOffTest) {
     EXPECT_EQ(c.getValue(201), 0.0);
 }
 
-TEST(NeuronTest, PositiveInput) {
-	if (NO_EXTERNAL_INPUT) {
+TEST(NeuronReactionTest, PositiveInput) {
+	if (!C::IS_BACKGROUND_NOISE) {
 		Neuron n(true, C::TAU, C::MEMBRANE_RESISTANCE);
 		
 		// test one update
@@ -27,8 +25,8 @@ TEST(NeuronTest, PositiveInput) {
 	}
 }
 
-TEST(NeuronTest, NegativeInput) {
-	if (NO_EXTERNAL_INPUT) {
+TEST(NeuronReactionTest, NegativeInput) {
+	if (!C::IS_BACKGROUND_NOISE) {
 		Neuron n(true, C::TAU, C::MEMBRANE_RESISTANCE);
 		
 		// test one update
@@ -37,8 +35,8 @@ TEST(NeuronTest, NegativeInput) {
 	}
 }
 
-TEST(NeuronTest, TimeTillFirstSpike) {
-	if (NO_EXTERNAL_INPUT) {
+TEST(NeuronSpikesTest, TimeTillFirstSpike) {
+	if (!C::IS_BACKGROUND_NOISE) {
 		Neuron n(true, C::TAU, C::MEMBRANE_RESISTANCE);
 		
 		long count = 0;
@@ -46,16 +44,15 @@ TEST(NeuronTest, TimeTillFirstSpike) {
 		do {
 			n.update(1, I_ext);
 			++count;
-		} while (!n.isRefractory() && count < 3000);
+		} while (!n.isRefractory() && count < 3000); // set additional limit to prevent infinite loops 
 		
-		std::cout << "Count: " << count << std::endl;
-		
-		EXPECT_TRUE(count > 1);
+		// first spike should occur at 92.4 ms
+		EXPECT_EQ(count, 924);
 	}
 }
 
-TEST(NeuronTest, CorrectSpikes) {
-	if (NO_EXTERNAL_INPUT) {
+TEST(NeuronSpikesTest, CorrectSpikes) {
+	if (!C::IS_BACKGROUND_NOISE) {
 		Neuron n(true, C::TAU, C::MEMBRANE_RESISTANCE);
 		
 		double I_ext = 1.01;
@@ -75,8 +72,8 @@ TEST(NeuronTest, CorrectSpikes) {
 	}
 }
 
-TEST(NeuronTest, CorrectSpikeReception) {
-	if (NO_EXTERNAL_INPUT) {
+TEST(NeuronSpikesTest, CorrectSpikeReception) {
+	if (!C::IS_BACKGROUND_NOISE) {
 		Neuron n = Neuron();
 
 		// transmit a spike at start
@@ -91,7 +88,7 @@ TEST(NeuronTest, CorrectSpikeReception) {
 	}
 }
  
-TEST(NeuronTest, NoSpikesTest) { 
+TEST(NeuronSpikesTest, NoSpikesOnInit) { 
 	Neuron n = Neuron();
 	
 	// neuron should not be refractory just after instanciation

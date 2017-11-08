@@ -124,7 +124,8 @@ void Neuron::updatePotential(double current) {
 	potential += incomingBuffer[clock % incomingBuffer.size()];
 	
 	// background noise
-	potential += Network::getBackgroundNoise();
+	if (C::IS_BACKGROUND_NOISE)
+		potential += Network::getBackgroundNoise();
 }
 
 // the neurons emits a spike

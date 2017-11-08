@@ -5,6 +5,7 @@
 #include <array>
 #include <random>
 #include <algorithm>
+#include <cassert>
 #include "Current.hpp"
 #include "Neuron.hpp"
 #include "Constants.hpp"
@@ -96,6 +97,10 @@ protected:
 		
 		// assign to connection vector
 		for (int source : table) {
+			// check for correct index
+			assert(source < (int) neurons.size());
+			
+			// assign new target to source
 			neurons[source]->addConnectionTarget(idx);
 		}
 	}

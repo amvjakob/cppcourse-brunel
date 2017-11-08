@@ -1,6 +1,5 @@
 #include <iostream>
 #include <fstream>
-#include <cassert>
 #include <ctime>
 #include <sstream> 
 #include <string>
@@ -12,6 +11,9 @@ Network::Network(Current* c, long duration)
 {
 	std::cout << "Generating network..." << std::flush;
 	time_t t1 = time(0);
+	
+	// make sure there is a current
+	assert(current != nullptr);
 	
 	// init neuron array
 	neurons = { nullptr };
@@ -57,6 +59,10 @@ void Network::run() {
 	// get beginning of the simulation
 	time_t t1 = time(0);
 	
+	// make sure the neurons were initialised
+	// logic: pick the first one, assume that if it has been initialised, so has the rest
+	assert(neurons[0] != nullptr);
+	
 	// main simulation loop
 	while (t < tEnd) {	
 			
@@ -100,6 +106,9 @@ void Network::save() const {
 	std::string filename = ss.str(); 
 	
 	log.open(filename);
+	
+	// make sure neurons were initialised
+	assert(neurons[0] != nullptr);
 	
 	// write each spike to the file
 	for (int i = 0; i < (int) neurons.size(); ++i) {
