@@ -23,9 +23,7 @@ namespace C {
 	/// Capacity of neuron membrane 
 	constexpr double MEMBRANE_CAPACITY = TAU / MEMBRANE_RESISTANCE;
 	
-	/** Membrane potential threshold;
-	 *  a neuron with a membrane potential above this value will fire
-	 * */
+	/// Membrane potential threshold: a neuron with a membrane potential above this value will fire
 	constexpr double V_THRESHOLD = 20.0;
 
 	/// Membrane potential at rest

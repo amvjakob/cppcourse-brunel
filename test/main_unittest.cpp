@@ -1,9 +1,8 @@
-#include "Network.hpp"
-#include "Neuron.hpp"
-#include "Current.hpp"
-#include "Constants.hpp"
+#include "../src/Network.hpp"
+#include "../src/Neuron.hpp"
+#include "../src/Current.hpp"
+#include "../src/Constants.hpp"
 #include <cmath>
-#include <iostream>
 #include "googletest/include/gtest/gtest.h"
 
 TEST(CurrentTest, CorrectOnOffTest) { 

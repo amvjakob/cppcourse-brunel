@@ -19,11 +19,14 @@ target_link_libraries(NeuroSimulation_UnitTest gtest gtest_main)
 add_test(NeuroSimulation_UnitTest NeuroSimulation_UnitTest)
 
 
+# indicate the documentation build as an option and set it to ON by default
+option(BUILD_DOC "Build documentation" ON) 
+
 # add a target to generate API documentation with Doxygen
 find_package(Doxygen)
 if (DOXYGEN_FOUND)
     # set input and output files
-    set(DOXYGEN_IN ${CMAKE_CURRENT_SOURCE_DIR}/docs/Doxyfile.in)
+    set(DOXYGEN_IN ${CMAKE_CURRENT_SOURCE_DIR}/Doxyfile.in)
     set(DOXYGEN_OUT ${CMAKE_CURRENT_SOURCE_DIR}/Doxyfile)
 
     # request to configure the file
@@ -31,9 +34,9 @@ if (DOXYGEN_FOUND)
     message("Doxygen build started")
 
     # note the option ALL which allows to build the docs together with the application
-    add_custom_target(doc_doxygen ALL
-            COMMAND ${DOXYGEN_EXECUTABLE} ${DOXYGEN_OUT}
-            WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+    add_custom_target(doc
+            ${DOXYGEN_EXECUTABLE} ${DOXYGEN_OUT}
+            WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
             COMMENT "Generating API documentation with Doxygen"
             VERBATIM)
 else (DOXYGEN_FOUND)

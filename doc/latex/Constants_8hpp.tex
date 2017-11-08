@@ -1,0 +1,90 @@
+\hypertarget{Constants_8hpp}{\section{src/\-Constants.hpp File Reference}
+\label{Constants_8hpp}\index{src/\-Constants.\-hpp@{src/\-Constants.\-hpp}}
+}
+
+
+File containing all constants relevant for the simulation.  
+
+
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{namespaceC_a11d64d3a7497df45a27aaed1861f6e21}{constexpr bool {\bfseries C\-::\-I\-S\-\_\-\-B\-A\-C\-K\-G\-R\-O\-U\-N\-D\-\_\-\-N\-O\-I\-S\-E} = true}\label{namespaceC_a11d64d3a7497df45a27aaed1861f6e21}
+
+\begin{DoxyCompactList}\small\item\em Flag for tests\-: true if there is external noise, false otherwise. \end{DoxyCompactList}\item 
+\hypertarget{namespaceC_a80f5b22648e9a40d65a0818d1ebabb73}{constexpr auto {\bfseries C\-::\-S\-T\-E\-P\-\_\-\-D\-U\-R\-A\-T\-I\-O\-N} = 0.\-1\-E-\/3}\label{namespaceC_a80f5b22648e9a40d65a0818d1ebabb73}
+
+\begin{DoxyCompactList}\small\item\em Duration in s of one simulation step (0.\-1ms) \end{DoxyCompactList}\item 
+\hypertarget{namespaceC_a3e634d16d0a2063b861df5eae7b192c3}{constexpr double {\bfseries C\-::\-T\-A\-U} = 20\-E-\/3}\label{namespaceC_a3e634d16d0a2063b861df5eae7b192c3}
+
+\begin{DoxyCompactList}\small\item\em Tau of neuron membrane (20ms) \end{DoxyCompactList}\item 
+\hypertarget{namespaceC_a97d6ea8e6f40e83f1038a535ce6c81b9}{constexpr double {\bfseries C\-::\-M\-E\-M\-B\-R\-A\-N\-E\-\_\-\-R\-E\-S\-I\-S\-T\-A\-N\-C\-E} = 20.\-0}\label{namespaceC_a97d6ea8e6f40e83f1038a535ce6c81b9}
+
+\begin{DoxyCompactList}\small\item\em Resistance of neuron membrane (20 G\-Ohm) \end{DoxyCompactList}\item 
+\hypertarget{namespaceC_a906117a82fd67f167cd075f791d89116}{constexpr double {\bfseries C\-::\-M\-E\-M\-B\-R\-A\-N\-E\-\_\-\-C\-A\-P\-A\-C\-I\-T\-Y} = T\-A\-U / M\-E\-M\-B\-R\-A\-N\-E\-\_\-\-R\-E\-S\-I\-S\-T\-A\-N\-C\-E}\label{namespaceC_a906117a82fd67f167cd075f791d89116}
+
+\begin{DoxyCompactList}\small\item\em Capacity of neuron membrane. \end{DoxyCompactList}\item 
+\hypertarget{namespaceC_a67ec338e7b674a874670df012670baaf}{constexpr double {\bfseries C\-::\-V\-\_\-\-T\-H\-R\-E\-S\-H\-O\-L\-D} = 20.\-0}\label{namespaceC_a67ec338e7b674a874670df012670baaf}
+
+\begin{DoxyCompactList}\small\item\em Membrane potential threshold\-: a neuron with a membrane potential above this value will fire. \end{DoxyCompactList}\item 
+\hypertarget{namespaceC_a72dfd86ad1976e1e5653f1c67d872e13}{constexpr double {\bfseries C\-::\-V\-\_\-\-R\-E\-S\-T} = 0.\-0}\label{namespaceC_a72dfd86ad1976e1e5653f1c67d872e13}
+
+\begin{DoxyCompactList}\small\item\em Membrane potential at rest. \end{DoxyCompactList}\item 
+\hypertarget{namespaceC_aabc2f7849b75052ec41441930d66bef2}{constexpr int {\bfseries C\-::\-R\-E\-F\-R\-A\-C\-T\-O\-R\-Y\-\_\-\-T\-I\-M\-E} = 20}\label{namespaceC_aabc2f7849b75052ec41441930d66bef2}
+
+\begin{DoxyCompactList}\small\item\em Amount of steps the neuron stays inactive after spiking. \end{DoxyCompactList}\item 
+\hypertarget{namespaceC_a7583458d739805507aeec2381fb4033d}{constexpr int {\bfseries C\-::\-T\-R\-A\-N\-S\-M\-I\-S\-S\-I\-O\-N\-\_\-\-D\-E\-L\-A\-Y} = 15}\label{namespaceC_a7583458d739805507aeec2381fb4033d}
+
+\begin{DoxyCompactList}\small\item\em Delay in spike transmission in steps. \end{DoxyCompactList}\item 
+\hypertarget{namespaceC_a3bf8a8d6ac0f72d1fb0b3655280e2376}{constexpr int {\bfseries C\-::\-T\-R\-A\-N\-S\-M\-I\-S\-S\-I\-O\-N\-\_\-\-B\-U\-F\-F\-E\-R\-\_\-\-S\-I\-Z\-E} = T\-R\-A\-N\-S\-M\-I\-S\-S\-I\-O\-N\-\_\-\-D\-E\-L\-A\-Y + 1}\label{namespaceC_a3bf8a8d6ac0f72d1fb0b3655280e2376}
+
+\begin{DoxyCompactList}\small\item\em Ring buffer size for spike transmission storage. \end{DoxyCompactList}\item 
+\hypertarget{namespaceC_a447091b84098094a915aa2b11db5e58e}{constexpr auto {\bfseries C\-::\-D\-E\-F\-A\-U\-L\-T\-\_\-\-C\-U\-R\-R\-E\-N\-T\-\_\-\-M\-A\-G} = 1.\-0}\label{namespaceC_a447091b84098094a915aa2b11db5e58e}
+
+\begin{DoxyCompactList}\small\item\em Default current, should not create spikes. \end{DoxyCompactList}\item 
+\hypertarget{namespaceC_a4ef20ba8174629d872df64940eeca4ee}{constexpr auto {\bfseries C\-::\-G} = 5}\label{namespaceC_a4ef20ba8174629d872df64940eeca4ee}
+
+\begin{DoxyCompactList}\small\item\em Ratio of inhibitory vs excitatory transmission values. \end{DoxyCompactList}\item 
+\hypertarget{namespaceC_a08159dab357a83509df140d536058fbf}{constexpr auto {\bfseries C\-::\-J\-\_\-\-E\-X\-C\-I\-T\-A\-T\-O\-R\-Y} = 0.\-1}\label{namespaceC_a08159dab357a83509df140d536058fbf}
+
+\begin{DoxyCompactList}\small\item\em Post-\/synaptic excitement after spike. \end{DoxyCompactList}\item 
+\hypertarget{namespaceC_a2db93238dbaf44f2174d213d16af8941}{constexpr auto {\bfseries C\-::\-J\-\_\-\-I\-N\-H\-I\-B\-I\-T\-O\-R\-Y} = -\/G $\ast$ J\-\_\-\-E\-X\-C\-I\-T\-A\-T\-O\-R\-Y}\label{namespaceC_a2db93238dbaf44f2174d213d16af8941}
+
+\begin{DoxyCompactList}\small\item\em Post-\/synaptic inhibition after spike. \end{DoxyCompactList}\item 
+\hypertarget{namespaceC_a22b18650eac080feecf12e1e4cb2469a}{constexpr double {\bfseries C\-::\-N\-\_\-\-R\-A\-T\-I\-O} = 0.\-25}\label{namespaceC_a22b18650eac080feecf12e1e4cb2469a}
+
+\begin{DoxyCompactList}\small\item\em Ratio of inhibitory vs excitatory neurons. \end{DoxyCompactList}\item 
+\hypertarget{namespaceC_aa3dc631c353c80e6fb3d38d32577d9b3}{constexpr int {\bfseries C\-::\-N\-\_\-\-E\-X\-C\-I\-T\-A\-T\-O\-R\-Y} = 10000}\label{namespaceC_aa3dc631c353c80e6fb3d38d32577d9b3}
+
+\begin{DoxyCompactList}\small\item\em Number of excitatory neurons. \end{DoxyCompactList}\item 
+\hypertarget{namespaceC_aadb82b387e5d673b7b40fb9ef2f1deb2}{constexpr int {\bfseries C\-::\-N\-\_\-\-I\-N\-H\-I\-B\-I\-T\-O\-R\-Y} = N\-\_\-\-R\-A\-T\-I\-O $\ast$ N\-\_\-\-E\-X\-C\-I\-T\-A\-T\-O\-R\-Y}\label{namespaceC_aadb82b387e5d673b7b40fb9ef2f1deb2}
+
+\begin{DoxyCompactList}\small\item\em Number of inhibitory neurons. \end{DoxyCompactList}\item 
+\hypertarget{namespaceC_a0d1773a955cf2cdd93c12efd8e851896}{constexpr int {\bfseries C\-::\-N\-\_\-\-E\-X\-T} = N\-\_\-\-E\-X\-C\-I\-T\-A\-T\-O\-R\-Y}\label{namespaceC_a0d1773a955cf2cdd93c12efd8e851896}
+
+\begin{DoxyCompactList}\small\item\em Number of external neurons. \end{DoxyCompactList}\item 
+\hypertarget{namespaceC_aa5d4904abfc7ec0a3c399e223ce66dea}{constexpr int {\bfseries C\-::\-N\-\_\-\-T\-O\-T\-A\-L} = N\-\_\-\-E\-X\-C\-I\-T\-A\-T\-O\-R\-Y + N\-\_\-\-I\-N\-H\-I\-B\-I\-T\-O\-R\-Y}\label{namespaceC_aa5d4904abfc7ec0a3c399e223ce66dea}
+
+\begin{DoxyCompactList}\small\item\em Total number of neurons in simulation. \end{DoxyCompactList}\item 
+\hypertarget{namespaceC_a6bf7abac8a2e94a0506d3679c3049f65}{constexpr double {\bfseries C\-::\-E\-P\-S\-I\-L\-O\-N} = 0.\-1}\label{namespaceC_a6bf7abac8a2e94a0506d3679c3049f65}
+
+\begin{DoxyCompactList}\small\item\em Connectivity value. \end{DoxyCompactList}\item 
+\hypertarget{namespaceC_a08201f6c4e4aa63043cfb698e30a0989}{constexpr int {\bfseries C\-::\-C\-\_\-\-E\-X\-C\-I\-T\-A\-T\-O\-R\-Y} = (int) (E\-P\-S\-I\-L\-O\-N $\ast$ N\-\_\-\-E\-X\-C\-I\-T\-A\-T\-O\-R\-Y)}\label{namespaceC_a08201f6c4e4aa63043cfb698e30a0989}
+
+\begin{DoxyCompactList}\small\item\em Number of incoming excitatory connections for any neuron. \end{DoxyCompactList}\item 
+\hypertarget{namespaceC_a3c83963e92472eb55866f70931ad91ce}{constexpr int {\bfseries C\-::\-C\-\_\-\-I\-N\-H\-I\-B\-I\-T\-O\-R\-Y} = (int) (E\-P\-S\-I\-L\-O\-N $\ast$ N\-\_\-\-I\-N\-H\-I\-B\-I\-T\-O\-R\-Y)}\label{namespaceC_a3c83963e92472eb55866f70931ad91ce}
+
+\begin{DoxyCompactList}\small\item\em Number of incoming inhibitory connections for any neuron. \end{DoxyCompactList}\item 
+\hypertarget{namespaceC_a55b41fa4396a378e9be9683be05e7360}{constexpr int {\bfseries C\-::\-C\-\_\-\-T\-O\-T\-A\-L} = C\-\_\-\-E\-X\-C\-I\-T\-A\-T\-O\-R\-Y + C\-\_\-\-I\-N\-H\-I\-B\-I\-T\-O\-R\-Y}\label{namespaceC_a55b41fa4396a378e9be9683be05e7360}
+
+\begin{DoxyCompactList}\small\item\em Number of total incoming connections for any neuron. \end{DoxyCompactList}\item 
+\hypertarget{namespaceC_ac3da14cd72f02027e9b5c8faea9e2464}{constexpr double {\bfseries C\-::\-E\-T\-A} = 2}\label{namespaceC_ac3da14cd72f02027e9b5c8faea9e2464}
+
+\begin{DoxyCompactList}\small\item\em Multiplier for the average frequency of external random spikes. \end{DoxyCompactList}\item 
+\hypertarget{namespaceC_a559ad7fe9e40e2a388e7ade6f35d811c}{constexpr double {\bfseries C\-::\-V\-\_\-\-E\-X\-T} = E\-T\-A $\ast$ V\-\_\-\-T\-H\-R\-E\-S\-H\-O\-L\-D / (J\-\_\-\-E\-X\-C\-I\-T\-A\-T\-O\-R\-Y $\ast$ T\-A\-U)}\label{namespaceC_a559ad7fe9e40e2a388e7ade6f35d811c}
+
+\begin{DoxyCompactList}\small\item\em Average frequency of external random spikes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+File containing all constants relevant for the simulation. 

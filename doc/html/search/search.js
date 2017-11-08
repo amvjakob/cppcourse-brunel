@@ -9,14 +9,16 @@ var indexSectionsWithContent =
 {
   0: "acfginrsu~",
   1: "cn",
-  2: "acfginrsu~"
+  2: "c",
+  3: "acfginrsu~"
 };
 
 var indexSectionNames =
 {
   0: "all",
   1: "classes",
-  2: "functions"
+  2: "files",
+  3: "functions"
 };
 
 function convertToId(search)

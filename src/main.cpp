@@ -3,7 +3,7 @@
 #include "Constants.hpp"
 
 // note: we work with number of steps as "time unit"
-int main(int argc, char** argv) {
+int main() {
 	
 	/*
 	double currentMag = C::DEFAULT_CURRENT_MAG;

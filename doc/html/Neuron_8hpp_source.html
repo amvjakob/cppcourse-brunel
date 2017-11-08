@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>BrunelNeuroSimulation: Neuron.hpp Source File</title>
+<title>BrunelNeuroSimulation: src/Neuron.hpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -64,13 +64,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
       <li><a href="files.html"><span>File&#160;List</span></a></li>
     </ul>
   </div>
-</div><!-- top -->
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Files</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Functions</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -79,6 +78,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </iframe>
 </div>
 
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li>  </ul>
+</div>
+</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">Neuron.hpp</div>  </div>
@@ -89,7 +93,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor"></span></div>
 <div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
 <div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;array&gt;</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;Constants.hpp&quot;</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="Constants_8hpp.html">Constants.hpp</a>&quot;</span></div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;</div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment">// Circular dependency resolution</span></div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keyword">class </span><a class="code" href="classNetwork.html">Network</a>;</div>
@@ -171,11 +175,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="ttc" id="classNeuron_html_ae2bc004a58621da0d1c51591400ca87d"><div class="ttname"><a href="classNeuron.html#ae2bc004a58621da0d1c51591400ca87d">Neuron::getPotential</a></div><div class="ttdeci">double getPotential() const </div><div class="ttdoc">Get the neuron&#39;s current membrane potential. </div><div class="ttdef"><b>Definition:</b> Neuron.cpp:28</div></div>
 <div class="ttc" id="classNeuron_html_ac533bdf0e14aa95c54e5df3eaa23ea6b"><div class="ttname"><a href="classNeuron.html#ac533bdf0e14aa95c54e5df3eaa23ea6b">Neuron::Neuron</a></div><div class="ttdeci">Neuron(bool typeExcitatory=true, double tau=C::TAU, double resistance=C::MEMBRANE_RESISTANCE)</div><div class="ttdoc">Neuron constructor. </div><div class="ttdef"><b>Definition:</b> Neuron.cpp:6</div></div>
 <div class="ttc" id="classNeuron_html_ad60adf0ea35c12bcad396e05ba822dab"><div class="ttname"><a href="classNeuron.html#ad60adf0ea35c12bcad396e05ba822dab">Neuron::receive</a></div><div class="ttdeci">void receive(double pot, long arrival)</div><div class="ttdoc">Receive an incoming spike. </div><div class="ttdef"><b>Definition:</b> Neuron.cpp:86</div></div>
-<div class="ttc" id="classNetwork_html"><div class="ttname"><a href="classNetwork.html">Network</a></div><div class="ttdoc">Class representing a Network. </div><div class="ttdef"><b>Definition:</b> Network.hpp:16</div></div>
+<div class="ttc" id="classNetwork_html"><div class="ttname"><a href="classNetwork.html">Network</a></div><div class="ttdoc">Class representing a Network. </div><div class="ttdef"><b>Definition:</b> Network.hpp:17</div></div>
 <div class="ttc" id="classNeuron_html_aa40fbb2b025efb1db420da32e16741c1"><div class="ttname"><a href="classNeuron.html#aa40fbb2b025efb1db420da32e16741c1">Neuron::isRefractory</a></div><div class="ttdeci">bool isRefractory() const </div><div class="ttdoc">Get whether the neuron is refractory. </div><div class="ttdef"><b>Definition:</b> Neuron.cpp:58</div></div>
 <div class="ttc" id="classNeuron_html_ab1efa405eb0cd7bac6ca012c961efe5d"><div class="ttname"><a href="classNeuron.html#ab1efa405eb0cd7bac6ca012c961efe5d">Neuron::getNbSpikes</a></div><div class="ttdeci">int getNbSpikes() const </div><div class="ttdoc">Get the number of previous spikes. </div><div class="ttdef"><b>Definition:</b> Neuron.cpp:38</div></div>
-<div class="ttc" id="classNeuron_html_a2c4a8b8f71c8f4632680a8e813eb28b3"><div class="ttname"><a href="classNeuron.html#a2c4a8b8f71c8f4632680a8e813eb28b3">Neuron::fire</a></div><div class="ttdeci">void fire()</div><div class="ttdoc">Adds a spike to the list of previous spikes. </div><div class="ttdef"><b>Definition:</b> Neuron.cpp:131</div></div>
+<div class="ttc" id="classNeuron_html_a2c4a8b8f71c8f4632680a8e813eb28b3"><div class="ttname"><a href="classNeuron.html#a2c4a8b8f71c8f4632680a8e813eb28b3">Neuron::fire</a></div><div class="ttdeci">void fire()</div><div class="ttdoc">Adds a spike to the list of previous spikes. </div><div class="ttdef"><b>Definition:</b> Neuron.cpp:132</div></div>
 <div class="ttc" id="classNeuron_html_ac401fdad4c7cbaa49c26be5cf490536d"><div class="ttname"><a href="classNeuron.html#ac401fdad4c7cbaa49c26be5cf490536d">Neuron::updatePotential</a></div><div class="ttdeci">void updatePotential(double current)</div><div class="ttdoc">Updates the neuron&#39;s membrane potential. </div><div class="ttdef"><b>Definition:</b> Neuron.cpp:119</div></div>
+<div class="ttc" id="Constants_8hpp_html"><div class="ttname"><a href="Constants_8hpp.html">Constants.hpp</a></div><div class="ttdoc">File containing all constants relevant for the simulation. </div></div>
 <div class="ttc" id="classNeuron_html_a65f5868f9a2ddc2414a5880f28b76d4c"><div class="ttname"><a href="classNeuron.html#a65f5868f9a2ddc2414a5880f28b76d4c">Neuron::isExcitatory</a></div><div class="ttdeci">bool isExcitatory() const </div><div class="ttdoc">Get the neuron type. </div><div class="ttdef"><b>Definition:</b> Neuron.cpp:66</div></div>
 <div class="ttc" id="classNeuron_html_a72fcea985a2cd480fc5c4b271390eed1"><div class="ttname"><a href="classNeuron.html#a72fcea985a2cd480fc5c4b271390eed1">Neuron::update</a></div><div class="ttdeci">bool update(int steps, double current)</div><div class="ttdoc">Main update function. </div><div class="ttdef"><b>Definition:</b> Neuron.cpp:92</div></div>
 <div class="ttc" id="classNeuron_html_a359701815e8c72b460d2959a339c4b54"><div class="ttname"><a href="classNeuron.html#a359701815e8c72b460d2959a339c4b54">Neuron::addConnectionTarget</a></div><div class="ttdeci">void addConnectionTarget(int idx)</div><div class="ttdoc">Add a connection target. </div><div class="ttdef"><b>Definition:</b> Neuron.cpp:76</div></div>
@@ -185,7 +190,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Nov 3 2017 22:48:04 for BrunelNeuroSimulation by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Nov 8 2017 11:36:04 for BrunelNeuroSimulation by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>
