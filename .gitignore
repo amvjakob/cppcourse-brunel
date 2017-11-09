@@ -1,11 +1,12 @@
-# ignore build files
+# ignore all build files except .gitignore
 build/*
+!build/.gitignore
+
+# ignore all doc files except .gitignore
+doc/*
+!doc/.gitignore
 
 # ignore Doxyfile (generated from Doxyfile.in with cmake)
+src/Doxyfile*
 Doxyfile*
 !Doxyfile.in
-
-# do not ignore spikes.gdf file
-# does not work if there is a version-controlled subfolder (!)
-!build/spikes.gdf
-!build
