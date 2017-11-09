@@ -30,4 +30,4 @@ In order to plot the data, I wrote a script (src/graph.py) to produce both a sca
 
 * The histogram shows the number of spikes for a given time interval (500 bins).
 
-Alternatively, the web application [https://cs116-plot.antoinealb.net/]() can also be used to generate the plots.
+Alternatively, the [web application](https://cs116-plot.antoinealb.net/) can also be used to generate the plots.
