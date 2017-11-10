@@ -45,8 +45,8 @@ TEST(NeuronSpikesTest, TimeTillFirstSpike) {
 			++count;
 		} while (!n.isRefractory() && count < 3000); // set additional limit to prevent infinite loops 
 		
-		// first spike should occur at 92.4 ms
-		EXPECT_EQ(count, 924);
+		// the neuron should be refractory at 92.5 ms, one step after the first spike
+		EXPECT_EQ(n.getClock(), 925);
 	}
 }
 
@@ -79,7 +79,7 @@ TEST(NeuronSpikesTest, CorrectSpikeReception) {
 		n.receive(C::J_EXCITATORY, C::TRANSMISSION_DELAY);
 
 		// update the neuron so it's just over the delay
-		n.update(C::TRANSMISSION_DELAY, 0);
+		n.update(C::TRANSMISSION_DELAY + 1, 0);
 
 		// the neuron's membrane potential should be equal
 		// to the transmitted potential
@@ -115,22 +115,19 @@ TEST(TwoNeuronsTest, CorrectBehaviour) {
 		++t;
 	}
 	
-	for (int i = 0; i < (int) neurons.size(); ++i) {
-		for (int spike = 0; spike < (int) neurons[i]->getSpikeTimes().size(); ++spike) {
-			std::cout << "spike n°" << spike << " du neurone " << i << " at: " << neurons[i]->getSpikeTime(spike) << std::endl;
-		}
-		std::cout << "Total: " << neurons[i]->getSpikeTimes().size() << std::endl << std::endl;
-	}
+	// theoretical maximum is 500 spikes
+	EXPECT_TRUE(neurons[0]->getNbSpikes() < stop / C::REFRACTORY_TIME);
+	EXPECT_TRUE(neurons[1]->getNbSpikes() < stop / C::REFRACTORY_TIME);
 }
  
 TEST(NeuronSpikesTest, NoSpikesOnInit) { 
 	Neuron n = Neuron();
 	
 	// neuron should not be refractory just after instanciation
-    ASSERT_FALSE(n.isRefractory());
+    EXPECT_FALSE(n.isRefractory());
 
     // neuron should start without any emitted spikes
-    ASSERT_TRUE(n.getNbSpikes() == 0);
+    EXPECT_TRUE(n.getNbSpikes() == 0);
 }
 
 
